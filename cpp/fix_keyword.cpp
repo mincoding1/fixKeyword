@@ -23,7 +23,7 @@ struct Node2 {
 
 vector<Node2> weekBest[7]; //월 ~ 금
 vector<Node2> twoBest[2]; //평일, 주말
-int UZ = 0;
+int UZ = 9;
 
 // 레벤슈타인 거리 계산 알고리즘 (문자열 유사도 검사)
 int levenshtein(const std::string& a, const std::string& b) {
@@ -107,7 +107,7 @@ string input2(string w, string wk) {
 
 	//재정렬 작업
 	if (UZ >= 2100000000 || max1 >= 2100000000 || max2 >= 2100000000) {
-		UZ = 0;
+		UZ = 9;
 		for (int i = 0; i < 5; i++) {
 			int num = 1;
 			for (Node2& node : weekBest[i]) {
