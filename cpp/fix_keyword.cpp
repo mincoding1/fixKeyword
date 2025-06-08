@@ -25,7 +25,7 @@ vector<Node2> weekBest[7]; //월 ~ 금
 vector<Node2> twoBest[2]; //평일, 주말
 int UZ = 9;
 
-constexpr int MAX_LEN = 1000;  // 문자열 최대 길이 제한
+constexpr int MAX_LEN = 100;  // 문자열 최대 길이 제한
 
 // 레벤슈타인 거리 계산 알고리즘 (문자열 유사도 검사)
 int levenshtein(const std::string& a, const std::string& b) {
