@@ -31,8 +31,8 @@ constexpr int MAX_LEN = 1000;  // 문자열 최대 길이 제한
 int levenshtein(const std::string& a, const std::string& b) {
 	const size_t len_a = a.size();
 	const size_t len_b = b.size();
-
-    	int d[MAX_LEN + 1][MAX_LEN + 1];
+	
+	int d[MAX_LEN + 1][MAX_LEN + 1];
 	
 	for (size_t i = 0; i <= len_a; ++i) d[i][0] = i;
 	for (size_t j = 0; j <= len_b; ++j) d[0][j] = j;
