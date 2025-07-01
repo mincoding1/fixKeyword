@@ -31,9 +31,9 @@ constexpr int MAX_LEN = 100;  // 문자열 최대 길이 제한
 int levenshtein(const std::string& a, const std::string& b) {
 	const size_t len_a = a.size();
 	const size_t len_b = b.size();
-	
+
 	int d[MAX_LEN + 1][MAX_LEN + 1];
-	
+
 	for (size_t i = 0; i <= len_a; ++i) d[i][0] = i;
 	for (size_t j = 0; j <= len_b; ++j) d[0][j] = j;
 
@@ -57,9 +57,9 @@ bool similer(const std::string& a, const std::string& b) {
 	int max_len = std::max(a.length(), b.length());
 	// 유사도 비율 (1.0: 완전히 같음, 0.0: 전혀 다름)
 	double similarity = 1.0 - (double)dist / max_len;
-	
+
 	int score = 1 + static_cast<int>(similarity * 99);
-	
+
 	if (score >= 80) return true;
 	return false;
 }
@@ -90,7 +90,7 @@ string input2(string w, string wk) {
 	long long int max2 = 0;
 
 	int flag = 0;
-	for (Node2 &node : weekBest[index]) {
+	for (Node2& node : weekBest[index2]) {
 		if (node.name == w) {
 			max1 = node.point + (node.point * 0.1);
 			node.point += (node.point * 0.1);
@@ -99,7 +99,7 @@ string input2(string w, string wk) {
 		}
 	}
 
-	for (Node2 &node : twoBest[index2]) {
+	for (Node2& node : twoBest[index2]) {
 		if (node.name == w) {
 			max2 = node.point + (node.point * 0.1);
 			node.point += (node.point * 0.1);
@@ -116,7 +116,7 @@ string input2(string w, string wk) {
 				node.point = num;
 				num++;
 			}
-		}	
+		}
 		for (int i = 0; i < 2; i++) {
 			int num = 1;
 			for (Node2& node : twoBest[i]) {
@@ -132,12 +132,12 @@ string input2(string w, string wk) {
 
 
 	//찰떡 HIT
-	for (Node2& node : weekBest[index]) {
+	for (Node2& node : weekBest[index2]) {
 		if (similer(node.name, w)) {
 			return node.name;
 		}
 	}
-	
+
 	for (Node2& node : twoBest[index]) {
 		if (similer(node.name, w)) {
 			return node.name;
@@ -145,22 +145,22 @@ string input2(string w, string wk) {
 	}
 
 	//완벽 HIT / 찰떡 HIT 둘다 아닌경우
-	if (weekBest[index].size() < 10) {
-		weekBest[index].push_back({ w, point });
-		std::sort(weekBest[index].begin(), weekBest[index].end());
-	}	
-	
+	if (weekBest[index2].size() < 10) {
+		weekBest[index2].push_back({ w, point });
+		std::sort(weekBest[index2].begin(), weekBest[index2].end());
+	}
+
 	if (twoBest[index].size() < 10) {
 		twoBest[index].push_back({ w, point });
 		std::sort(twoBest[index].begin(), twoBest[index].end());
 	}
 
-	if (weekBest[index].size() == 10) {
-		if (weekBest[index].back().point < point) {
-			weekBest[index].pop_back();
-			weekBest[index].push_back({ w, point });
-			std::sort(weekBest[index].begin(), weekBest[index].end());
-		}		
+	if (weekBest[index2].size() == 10) {
+		if (weekBest[index2].back().point < point) {
+			weekBest[index2].pop_back();
+			weekBest[index2].push_back({ w, point });
+			std::sort(weekBest[index2].begin(), weekBest[index2].end());
+		}
 	}
 
 	if (twoBest[index].size() == 10) {
@@ -168,7 +168,7 @@ string input2(string w, string wk) {
 			twoBest[index].pop_back();
 			twoBest[index].push_back({ w, point });
 			std::sort(twoBest[index].begin(), twoBest[index].end());
-		}		
+		}
 	}
 
 	return w;
